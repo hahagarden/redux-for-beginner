@@ -2,22 +2,33 @@ const add = document.getElementById("add");
 const minus = document.getElementById("minus");
 const number = document.querySelector("span");
 
-let count = 0;
-number.innerText = count;
-
-const updateText = () => {
-  number.innerText = count;
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case "ADD":
+      return state + 1;
+    case "MINUS":
+      return state - 1;
+    default:
+      return state;
+  }
 };
 
+const store = Redux.createStore(reducer);
+
 const onAddClick = () => {
-  count = count + 1;
-  updateText();
+  store.dispatch({ type: "ADD" });
 };
 
 const onMinusClick = () => {
-  count = count - 1;
-  updateText();
+  store.dispatch({ type: "MINUS" });
 };
 
+const onChange = () => {
+  number.innerText = store.getState();
+};
+
+store.subscribe(onChange);
+
+number.innerText = store.getState();
 add.addEventListener("click", onAddClick);
 minus.addEventListener("click", onMinusClick);
