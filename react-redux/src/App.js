@@ -1,17 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { add, minus, setDefault } from "./counterSlice";
+import { increase, decrease, setDefault } from "./counterReducer";
 
 function App() {
-  const counter = useSelector((state) => state.counter.value);
+  const counter = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
   const onAddClick = () => {
-    dispatch(add());
+    dispatch(increase());
   };
 
   const onMinusClick = () => {
-    dispatch(minus());
+    dispatch(decrease());
   };
 
   const onSetDefaultClick = () => {
