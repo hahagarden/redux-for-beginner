@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { increase, decrease, setDefault } from "./counterReducer";
 
 function App() {
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const onAddClick = () => {

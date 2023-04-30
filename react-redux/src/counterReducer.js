@@ -1,13 +1,36 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+export const increase = () => {
+  return {
+    type: "increase",
+  };
+};
 
-export const increase = createAction("increase");
-export const decrease = createAction("decrease");
-export const setDefault = createAction("setDefault");
+export const decrease = () => {
+  return {
+    type: "decrease",
+  };
+};
 
-const counterReducer = createReducer(0, {
-  [increase]: (state, action) => state + 1,
-  [decrease]: (state, action) => state - 1,
-  [setDefault]: (state, action) => action.payload,
-});
+export const setDefault = (num) => {
+  return {
+    type: "setDefault",
+    payload: num,
+  };
+};
+
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case "increase":
+      return state + 1;
+
+    case "decrease":
+      return state - 1;
+
+    case "setDefault":
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
 
 export default counterReducer;

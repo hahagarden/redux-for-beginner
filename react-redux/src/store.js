@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { createStore } from "redux";
 import counterReducer from "./counterReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = configureStore({ reducer: { counter: counterReducer } }); // useSelector( state => state.counter ) 으로 사용
-
+const store = createStore(counterReducer, composeWithDevTools());
 export default store;
